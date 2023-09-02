@@ -2,11 +2,14 @@
 // trao@g.hmc.edu 15 January 2020
 // Updated for RISC-V Architecture
 
+import wjbot_riscv::*;
+
 module aludecoder(input  logic [1:0] ALUOp,
                   input  logic [2:0] funct3,
                   input  logic op_5, funct7_5,
                   output logic [2:0] ALUControl);
   always_comb begin : decoderlogic
+    ALUControl = 3'bxxx;
     case (ALUOp)
       2'b00: ALUControl = 3'b000;
       2'b01: ALUControl = 3'b001;
@@ -18,14 +21,15 @@ module aludecoder(input  logic [1:0] ALUOp,
               2'b01,
               2'b10: ALUControl = 3'b000;
               2'b11: ALUControl = 3'b001;
-              default: ALUControl = 3'b000;
+              default: ;
             endcase
           3'b010: ALUControl = 3'b101;
           3'b110: ALUControl = 3'b011;
           3'b111: ALUControl = 3'b010;
+          default: ;
         endcase
       end
-      default: ALUControl = 3'b000;
+      default: ;
     endcase
   end
 endmodule
@@ -52,7 +56,7 @@ module testbench #(parameter VECTORSIZE=10);
   
   // at start of test, load vectors and pulse reset
   initial begin
-    $readmemb("aludecoder.tv", testvectors); // Students may have to add a file path if ModelSim set up incorrectly
+    $readmemb({proj_root, "HarrisAndHarris_DDCA/tv/aludecoder.tv"}, testvectors); // Students may have to add a file path if ModelSim set up incorrectly
     vectornum = 0; errors = 0;
     hash = 0;
   end

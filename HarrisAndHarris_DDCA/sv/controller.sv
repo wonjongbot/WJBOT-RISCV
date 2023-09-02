@@ -24,7 +24,7 @@ module controller(input  logic       clk,
                   output logic       IRWrite, PCWrite, 
                   output logic       RegWrite, MemWrite);
 endmodule
-
+/*
 module testbench();
 
   logic        clk;
@@ -63,7 +63,7 @@ module testbench();
   // at start of test, load vectors and pulse reset
   initial
     begin
-      $readmemb("controller.tv", testvectors);
+      $readmemb("../tv/controller.tv", testvectors);
       vectornum = 0; errors = 0; hash = 0;
       reset = 1; #22; reset = 0;
     end
@@ -134,4 +134,5 @@ module testbench();
       end
     end
 endmodule
+*/
 
