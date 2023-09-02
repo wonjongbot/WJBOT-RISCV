@@ -14,25 +14,25 @@
 [_@]*
 
 # ignore compilation output of ModelSim
-tools/Quartus_Project/Modelsim/*.mti
-tools/Quartus_Project/Modelsim/*.dat
-tools/Quartus_Project/Modelsim/*.dbs
-tools/Quartus_Project/Modelsim/*.psm
-tools/Quartus_Project/Modelsim/*.bak
-tools/Quartus_Project/Modelsim/*.cmp
-tools/Quartus_Project/Modelsim/*.jpg
-tools/Quartus_Project/Modelsim/*.html
-tools/Quartus_Project/Modelsim/*.bsf
+tools/Modelsim/*.mti
+tools/Modelsim/*.dat
+tools/Modelsim/*.dbs
+tools/Modelsim/*.psm
+tools/Modelsim/*.bak
+tools/Modelsim/*.cmp
+tools/Modelsim/*.jpg
+tools/Modelsim/*.html
+tools/Modelsim/*.bsf
 
 # ignore simulation output of ModelSim
-tools/Quartus_Project/Modelsim/wlf*
-tools/Quartus_Project/Modelsim/*.wlf
-tools/Quartus_Project/Modelsim/*.vstf
-tools/Quartus_Project/Modelsim/*.ucdb
-tools/Quartus_Project/Modelsim/cov*/
-tools/Quartus_Project/Modelsim/transcript*
-tools/Quartus_Project/Modelsim/sc_dpiheader.h
-tools/Quartus_Project/Modelsim/vsim.dbg
+tools/Modelsim/wlf*
+tools/Modelsim/*.wlf
+tools/Modelsim/*.vstf
+tools/Modelsim/*.ucdb
+tools/Modelsim/cov*/
+tools/Modelsim/transcript*
+tools/Modelsim/sc_dpiheader.h
+tools/Modelsim/vsim.dbg
 
 # Quartus
 tools/Quartus_Project/db/
