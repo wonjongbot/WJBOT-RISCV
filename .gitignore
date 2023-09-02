@@ -9,13 +9,30 @@
 *.bin
 *.o
 
-# ModelSim
-tools/Modelsim/transcript
-tools/Modelsim/vsim.wlf
-tools/Modelsim/work/
-tools/Modelsim/*.wlf
-tools/Modelsim/*_lib/
-tools/Modelsim/modelsim.ini
+# ModelSim (from https://github.com/github/gitignore/blob/main/Global/ModelSim.gitignore)
+# ignore ModelSim generated files and directories (temp files and so on)
+[_@]*
+
+# ignore compilation output of ModelSim
+tools/Quartus_Project/Modelsim/*.mti
+tools/Quartus_Project/Modelsim/*.dat
+tools/Quartus_Project/Modelsim/*.dbs
+tools/Quartus_Project/Modelsim/*.psm
+tools/Quartus_Project/Modelsim/*.bak
+tools/Quartus_Project/Modelsim/*.cmp
+tools/Quartus_Project/Modelsim/*.jpg
+tools/Quartus_Project/Modelsim/*.html
+tools/Quartus_Project/Modelsim/*.bsf
+
+# ignore simulation output of ModelSim
+tools/Quartus_Project/Modelsim/wlf*
+tools/Quartus_Project/Modelsim/*.wlf
+tools/Quartus_Project/Modelsim/*.vstf
+tools/Quartus_Project/Modelsim/*.ucdb
+tools/Quartus_Project/Modelsim/cov*/
+tools/Quartus_Project/Modelsim/transcript*
+tools/Quartus_Project/Modelsim/sc_dpiheader.h
+tools/Quartus_Project/Modelsim/vsim.dbg
 
 # Quartus
 tools/Quartus_Project/db/
