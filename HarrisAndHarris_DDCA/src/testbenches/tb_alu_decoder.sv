@@ -1,6 +1,12 @@
 import wjbot_riscv::proj_root;
 
-module tb_aludec #(parameter VECTORSIZE=10);
+typedef enum logic[6:0] { r_type_op     = 7'b0110011,
+i_type_alu_op = 7'b0010011,
+lw_op         = 7'b0000011,
+sw_op         = 7'b0100011,
+beq_op        = 7'b1100011,
+jal_op        = 7'b1101111 } opcodetype_t;
+module tb_alu_decoder #(parameter VECTORSIZE=10);
   logic                   clk;
   logic                   op_5, funct7_5;
   logic [1:0]             ALUOp;
@@ -9,29 +15,29 @@ module tb_aludec #(parameter VECTORSIZE=10);
   logic [6:0]             hash;
   logic [31:0]            vectornum, errors;
   // 32-bit numbers used to keep track of how many test vectors have been
-  logic [VECTORSIZE-1:0]  testvectors[1000:0];
+  logic [VECTORSIZE-1:0]  testvectors[1000];
   logic [VECTORSIZE-1:0]  DONE = 'bx;
-  
+
   // instantiate device under test
-  aludecoder dut(ALUOp, funct3, op_5, funct7_5, ALUControl);
-  
+  alu_decoder dut(ALUOp, funct3, op_5, funct7_5, ALUControl);
+
   // generate clock
   always begin
    clk = 1; #5; clk = 0; #5;
   end
-  
+
   // at start of test, load vectors and pulse reset
   initial begin
     $readmemb({proj_root, "HarrisAndHarris_DDCA/src/testbenches/vectors/aludecoder.tv"}, testvectors);
     vectornum = 0; errors = 0;
     hash = 0;
   end
-    
+
   // apply test vectors on rising edge of clk
   always @(posedge clk) begin
     #1; {ALUOp, funct3, op_5, funct7_5, ALUControlExpected} = testvectors[vectornum];
   end
-  
+
   // Check results on falling edge of clock.
   always @(negedge clk)begin
       if (ALUControl !== ALUControlExpected) begin // result is bad

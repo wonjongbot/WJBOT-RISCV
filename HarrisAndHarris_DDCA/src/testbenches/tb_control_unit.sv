@@ -1,11 +1,12 @@
-import wjbot_riscv::opcodetype;
+import wjbot_riscv::proj_root;
+import wjbot_riscv::opcodetype_t;
 
-module tb_controller();
+module tb_control_unit();
 
   logic        clk;
   logic        reset;
   
-  opcodetype  op;
+  opcodetype_t  op;
   logic [2:0] funct3;
   logic       funct7b5;
   logic       Zero;
@@ -26,9 +27,8 @@ module tb_controller();
 
 
   // instantiate device to be tested
-  controller dut(clk, reset, op, funct3, funct7b5, Zero,
+  control_unit dut(clk, reset, op, funct3, funct7b5, Zero,
                  ImmSrc, ALUSrcA, ALUSrcB, ResultSrc, AdrSrc, ALUControl, IRWrite, PCWrite, RegWrite, MemWrite);
-  
   // generate clock
   always 
     begin
@@ -38,7 +38,7 @@ module tb_controller();
   // at start of test, load vectors and pulse reset
   initial
     begin
-      $readmemb("../tv/controller.tv", testvectors);
+      $readmemb({proj_root, "HarrisAndHarris_DDCA/src/testbenches/vectors/controller.tv"}, testvectors);
       vectornum = 0; errors = 0; hash = 0;
       reset = 1; #22; reset = 0;
     end
@@ -52,7 +52,7 @@ module tb_controller();
   // check results on falling edge of clk
   always @(negedge clk)
     if (~reset) begin // skip cycles during reset
-      new_error=0; 
+      new_error=0;
 
       if ((ImmSrc!==expected[15:14])&&(expected[15:14]!==2'bxx))  begin
         $display("   ImmSrc = %b      Expected %b", ImmSrc,     expected[15:14]);

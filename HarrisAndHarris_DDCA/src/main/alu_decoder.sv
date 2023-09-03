@@ -2,7 +2,7 @@
 // trao@g.hmc.edu 15 January 2020
 // Updated for RISC-V Architecture
 
-module aludecoder(input  logic [1:0] ALUOp,
+module alu_decoder(input  logic [1:0] ALUOp,
                   input  logic [2:0] funct3,
                   input  logic op_5, funct7_5,
                   output logic [2:0] ALUControl);
